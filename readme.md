@@ -28,7 +28,7 @@ Error-handling is a critical part of web development. One one hand developers ne
 
 Client-side validations ensure a good *user experience* by providing real-time, inline feedback on the user input. Server-side validations are **essential** for maintaining *database integrity*, especially if the client-side validations are ever compromised or purposely circumvented.
 
-Today we'll be focusing on server-side validations in Rails, using [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html).
+Today for server-side validations in Rails, we will be using [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html). And for our client-side validations we will be building them with html5 attributes. [Data form validation MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
 
 ##Airplane App
 
