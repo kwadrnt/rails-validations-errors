@@ -32,11 +32,11 @@ Today we'll be focusing on server-side validations in Rails, using [Active Recor
 
 ##Airplane App
 
-For the purposes of this workshop there is a Rails app, `airplane-app` inside the repo that demonstrates the below examples.
+For the purposes of this workshop there is a Rails app, `airplane-app` inside the repo that demonstrates the examples below.
 
-The application was generated with: `rails new airplane-app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database postgres (`-d postgresql`).
+The application was generated with: `rails new airplane-app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database to postgres (`-d postgresql`).
 
->Be sure to `bundle`, `rake db:create db:migrate db:seed`, and have postgres running before launching the application.
+>Be sure to `bundle`, `rails db:create db:migrate db:seed`, and have postgres running before launching the application.
 
 ## Model Validations
 
@@ -132,7 +132,7 @@ Just one last step! We've sent `flash` to the view, but we haven't rendered it y
 <%= yield %>
 ```
 
->Note: run [`rake notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code. 
+>Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code. 
 
 ## Debugging
 
@@ -185,8 +185,6 @@ We've just covered how to:
 * Handle errors appropriately
 * Display errors to the user
 * Set breakpoints in Rails
-
-For more chellenges, see the associated [lab](https://github.com/sf-wdi-29/rails-validations-errors-lab).
 
 ## Resources
 
