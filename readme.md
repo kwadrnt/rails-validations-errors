@@ -82,7 +82,7 @@ Moreover, we can call [`.errors.full_messages`](http://guides.rubyonrails.org/ac
 
 Let's look at how we can display the error messages to the user so they know what went wrong if their input doesn't pass our validations.
 
-###Challenge: Duplicates
+###Challenge: Duplicates (2 mins)
 
 Get the `airplane.errors.full_messages` to return `["Name has already been taken"]`
 
@@ -132,9 +132,9 @@ Just one last step! We've sent `flash` to the view, but we haven't rendered it y
 <%= yield %>
 ```
 
->Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code. 
+>Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code.
 
-## Debugging
+## Stretch Challenges and Debugging
 
 Lastly there will be errors that crash your application that you need to catch and debug before they do so. This will require setting a break point in order for you to stop execution of the code and check your assumptions in a specific context. Let's discuss the preferred method to do so.
 
@@ -152,10 +152,10 @@ Let's swap out the gem `byebug` with `pry-byebug` and rebundle. Now we set break
 
 ```ruby
 group :development, :test do
-  
+
   # pry debugger
   gem 'pry-byebug'
-  
+
   # Fake data
   gem 'ffaker'
 
@@ -172,7 +172,7 @@ On a side note, note that anytime the application runs into an error, it loads u
 
 >Additionally we can load up the console manually by invoking `<% console %>` somewhere in a view; generally, at the bottom of `application.html.erb`.
 
-###Challenge: 5 Minute Breakpoint
+###Challenge
 
 Render a variable `@great_quote` onto the view but do **not** set it explicitly in the controller. Instead use `binding.pry` to hit breakpoint, set `@great_quote` to something nice, `continue`, then see it rendered to the page.
 
