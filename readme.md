@@ -6,7 +6,7 @@
 <!-- framing the "why" in big-picture/real world examples -->
 *This workshop is important because:*
 
-Error-handling is a critical part of web development. One one hand developers need to ensure their applications validate input and raise errors appropriately. On the other hand it is also important design a good user experience for when these errors occur.
+Error-handling is a critical part of web development. On one hand, developers need to ensure their applications validate input and raise errors appropriately. On the other hand it is also important to design a good user experience for when these errors occur.
 
 ### What are the objectives?
 <!-- specific/measurable goal for students to achieve -->
@@ -32,9 +32,9 @@ Today for server-side validations in Rails, we will be using [Active Record Vali
 
 ##Airplane App
 
-For the purposes of this workshop there is a Rails app, `airplane-app` inside the repo that demonstrates the examples below.
+For the purposes of this workshop there is a Rails app, `airplane_app` inside the repo that demonstrates the examples below.
 
-The application was generated with: `rails new airplane-app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database to postgres (`-d postgresql`).
+The application was generated with: `rails new airplane_app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database to postgres (`-d postgresql`).
 
 >Be sure to `bundle`, `rails db:create db:migrate db:seed`, and have postgres running before launching the application.
 
@@ -50,7 +50,7 @@ class Airplane < ActiveRecord::Base
 end
 ```
 
->Here, the model is told to validate itself before saving to the database. The `validates` method takes the model as it's first argument and configuration options as the remaining arguments.
+>Here, we're telling the model to validate itself before saving to the database. The `validates` method takes the model as it's first argument and configuration options as the remaining arguments.
 
 In `rails console`, if you try adding a new airplane to the database where a name is
 
@@ -88,7 +88,7 @@ Get the `airplane.errors.full_messages` to return `["Name has already been taken
 
 ## Displaying Errors to the User
 
-In the `airplane-app` what currently happens when we try to submit invalid data to the database via the `airplanes#new` view?
+In the `airplane_app` what currently happens when we try to submit invalid data to the database via the `airplanes#new` view?
 
 >As a user how are you supposed to know that something went wrong and what you are supposed to do about it?
 
