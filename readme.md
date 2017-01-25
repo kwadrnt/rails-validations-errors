@@ -142,11 +142,11 @@ By default, Rails comes with the gem `byebug` loaded into the development & test
 
 > Set a breakpoint in `airplanes#index`, hit it. Can we add a query string to the url and inspect the `params`?
 
-###Binding.pry
+###Binding.
 
 This is great, but wouldn't it be so much better if we had a colorful, well indented console to work in?
 
-Let's swap out the gem `byebug` with `pry-byebug` and rebundle. Now we set breakpoints with `binding.pry` instead of `debugger`.
+Let's swap out the gem `byebug` with `pry-rails` and rebundle. Now we set breakpoints with `binding.pry` instead of `debugger`.
 
 **Gemfile**
 
