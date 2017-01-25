@@ -28,15 +28,15 @@ Error-handling is a critical part of web development. One one hand developers ne
 
 Client-side validations ensure a good *user experience* by providing real-time, inline feedback on the user input. Server-side validations are **essential** for maintaining *database integrity*, especially if the client-side validations are ever compromised or purposely circumvented.
 
-Today we'll be focusing on server-side validations in Rails, using [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html).
+Today for server-side validations in Rails, we will be using [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html). And for our client-side validations we will be building them with html5 attributes. [Data form validation MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
 
 ##Airplane App
 
-For the purposes of this workshop there is a Rails app, `airplane-app` inside the repo that demonstrates the below examples.
+For the purposes of this workshop there is a Rails app, `airplane-app` inside the repo that demonstrates the examples below.
 
-The application was generated with: `rails new airplane-app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database postgres (`-d postgresql`).
+The application was generated with: `rails new airplane-app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database to postgres (`-d postgresql`).
 
->Be sure to `bundle`, `rake db:create db:migrate db:seed`, and have postgres running before launching the application.
+>Be sure to `bundle`, `rails db:create db:migrate db:seed`, and have postgres running before launching the application.
 
 ## Model Validations
 
@@ -82,7 +82,7 @@ Moreover, we can call [`.errors.full_messages`](http://guides.rubyonrails.org/ac
 
 Let's look at how we can display the error messages to the user so they know what went wrong if their input doesn't pass our validations.
 
-###Challenge: Duplicates
+###Challenge: Duplicates (2 mins)
 
 Get the `airplane.errors.full_messages` to return `["Name has already been taken"]`
 
@@ -132,9 +132,9 @@ Just one last step! We've sent `flash` to the view, but we haven't rendered it y
 <%= yield %>
 ```
 
->Note: run [`rake notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code. 
+>Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code.
 
-## Debugging
+## Stretch Challenges and Debugging
 
 Lastly there will be errors that crash your application that you need to catch and debug before they do so. This will require setting a break point in order for you to stop execution of the code and check your assumptions in a specific context. Let's discuss the preferred method to do so.
 
@@ -152,10 +152,10 @@ Let's swap out the gem `byebug` with `pry-rails` and rebundle. Now we set breakp
 
 ```ruby
 group :development, :test do
-  
+
   # pry debugger
-  gem 'pry-rails'
-  
+  gem 'pry-byebug'
+
   # Fake data
   gem 'ffaker'
 
@@ -172,7 +172,7 @@ On a side note, note that anytime the application runs into an error, it loads u
 
 >Additionally we can load up the console manually by invoking `<% console %>` somewhere in a view; generally, at the bottom of `application.html.erb`.
 
-###Challenge: 5 Minute Breakpoint
+###Challenge
 
 Render a variable `@great_quote` onto the view but do **not** set it explicitly in the controller. Instead use `binding.pry` to hit breakpoint, set `@great_quote` to something nice, `continue`, then see it rendered to the page.
 
@@ -185,8 +185,6 @@ We've just covered how to:
 * Handle errors appropriately
 * Display errors to the user
 * Set breakpoints in Rails
-
-For more chellenges, see the associated [lab](https://github.com/sf-wdi-29/rails-validations-errors-lab).
 
 ## Resources
 
