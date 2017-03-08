@@ -6,7 +6,7 @@
 <!-- framing the "why" in big-picture/real world examples -->
 *This workshop is important because:*
 
-Error-handling is a critical part of web development. One one hand developers need to ensure their applications validate input and raise errors appropriately. On the other hand it is also important design a good user experience for when these errors occur.
+Error-handling is a critical part of web development. On one hand, developers need to ensure their applications validate input and raise errors appropriately. On the other hand it is also important to design a good user experience for when these errors occur.
 
 ### What are the objectives?
 <!-- specific/measurable goal for students to achieve -->
@@ -14,7 +14,7 @@ Error-handling is a critical part of web development. One one hand developers ne
 
 - Use built-in ActiveRecord validation methods to validate database entries.
 - Display errors in the view using Rails `flash` messages.
-- Set breakpoints to check your assumptions
+
 
 ### Where should we be now?
 <!-- call out the skills that are prerequisites -->
@@ -22,7 +22,30 @@ Error-handling is a critical part of web development. One one hand developers ne
 
 - Construct a basic Rails application
 
-##Error Handling
+## Warmup
+
+<details>
+  <summary>What is validation?</summary>
+  <br>
+  <p>Validation is the process of checking to make sure any user input is of the proper type and format.</p>
+</details>
+
+<details>
+  <summary>Where in our codebase can we validate user input?</summary>
+  <br>
+  <p>Developers can add validation handling on the client-side, at the model, and in the actual database.</p>
+</details>
+
+<details>
+  <summary>Why are there so many places that I can validate data? Are they all a good idea?</summary>
+  <br>
+  <p>Validation on the client-side is built to improve user experience. When a user fills out a form improperly, we should let them know immediately, rather than waiting for a full HTTP request/response to process.</p>
+  <p>Validation at the model-level allows the application to prevent access to the database if the data isn't formatted correctly.</p>
+  <p>Validation in the database is helpful if several different applications are using the same database and might have different standards of validation.</p>
+  <a href="http://guides.rubyonrails.org/active_record_validations.html#why-use-validations-questionmark">Source</a>
+</details>
+
+## Error Handling
 
 **The best error-handling strategy is a combination of both [client-side](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) and server-side validations.**
 
@@ -30,11 +53,11 @@ Client-side validations ensure a good *user experience* by providing real-time, 
 
 Today for server-side validations in Rails, we will be using [Active Record Validations](http://guides.rubyonrails.org/active_record_validations.html). And for our client-side validations we will be building them with html5 attributes. [Data form validation MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation)
 
-##Airplane App
+## Airplane App
 
-For the purposes of this workshop there is a Rails app, `airplane-app` inside the repo that demonstrates the examples below.
+For the purposes of this workshop there is a Rails app, `airplane_app` inside the repo that demonstrates the examples below.
 
-The application was generated with: `rails new airplane-app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database to postgres (`-d postgresql`).
+The application was generated with: `rails new airplane_app -T -B -d postgresql` in order to prevent Rails from automatically creating tests (`-T`), prevent it from automatically bundling (`-B`), and set the database to postgres (`-d postgresql`).
 
 >Be sure to `bundle`, `rails db:create db:migrate db:seed`, and have postgres running before launching the application.
 
@@ -50,7 +73,7 @@ class Airplane < ActiveRecord::Base
 end
 ```
 
->Here, the model is told to validate itself before saving to the database. The `validates` method takes the model as it's first argument and configuration options as the remaining arguments.
+>Here, we're telling the model to validate itself before saving to the database. The `validates` method takes the model as it's first argument and configuration options as the remaining arguments.
 
 In `rails console`, if you try adding a new airplane to the database where a name is
 
@@ -88,7 +111,7 @@ Get the `airplane.errors.full_messages` to return `["Name has already been taken
 
 ## Displaying Errors to the User
 
-In the `airplane-app` what currently happens when we try to submit invalid data to the database via the `airplanes#new` view?
+In the `airplane_app` what currently happens when we try to submit invalid data to the database via the `airplanes#new` view?
 
 >As a user how are you supposed to know that something went wrong and what you are supposed to do about it?
 
@@ -96,7 +119,7 @@ In order to properly communicate what is happening behind the scenes, we can dis
 
 ## Error Handling in Views: Flash Messages
 
-Rails comes with a [flash hash](http://api.rubyonrails.org/classes/ActionDispatch/Flash.html), which stores a set of key/value pairs. We'll set a key-value pair on the `flash` hash in the controller to be rendered later in the view.
+Rails comes with a [flash hash](http://api.rubyonrails.org/classes/ActionDispatch/Flash.html), which stores a set of key/value pairs. `flash` is a variable that's accessible in our controllers and in our views. We'll set a key-value pair on the `flash` hash in the controller to be rendered later in the view.
 
 Because we're trying to display an error message we get back from Active Record we can store the error message in the flash.
 
@@ -106,7 +129,11 @@ flash[:error] = airplane.errors.full_messages
 
 Add the above line into `airplane#create` action, if the airplane isn't saved correctly and before the `:new` view is rendered again.
 
-**app/controllers/airplanes_controller.rb**
+<details>
+  <summary><strong>Where should this piece of code go?</strong></summary>
+  <br>
+  <p> **app/controllers/airplanes_controller.rb** </p>
+</details>
 
 ```ruby
   def create
@@ -119,10 +146,16 @@ Add the above line into `airplane#create` action, if the airplane isn't saved co
     end
   end
 ```
+>Note: there's an error in the code above. Take a few moments to figure out what might go wrong and try to fix it before it does. If you feel stumped, copy and paste and test to see what happens when you put invalid entries into the form.
+
 
 Just one last step! We've sent `flash` to the view, but we haven't rendered it yet. Let's do that in our `application.html.erb` layout, so we can render flash messages in *every* view:
 
-**app/views/layouts/application.html.erb**
+<details>
+  <summary><strong>Where should this piece of code go?</strong></summary>
+  <br>
+  <p> **app/views/layouts/application.html.erb** </p>
+</details>
 
 ```html
 <% flash.each do |name, msg| %>
@@ -133,48 +166,6 @@ Just one last step! We've sent `flash` to the view, but we haven't rendered it y
 ```
 
 >Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code.
-
-## Stretch Challenges and Debugging
-
-Lastly there will be errors that crash your application that you need to catch and debug before they do so. This will require setting a break point in order for you to stop execution of the code and check your assumptions in a specific context. Let's discuss the preferred method to do so.
-
-By default, Rails comes with the gem `byebug` loaded into the development & test environments. Anywhere in the code you can call `byebug`, which will set a breakpoint.
-
-> Set a breakpoint in `airplanes#index`, hit it. Can we add a query string to the url and inspect the `params`?
-
-###Binding.
-
-This is great, but wouldn't it be so much better if we had a colorful, well indented console to work in?
-
-Let's swap out the gem `byebug` with `pry-rails` and rebundle. Now we set breakpoints with `binding.pry` instead of `debugger`.
-
-**Gemfile**
-
-```ruby
-group :development, :test do
-
-  # pry debugger
-  gem 'pry-byebug'
-
-  # Fake data
-  gem 'ffaker'
-
-end
-```
-
-> Try accessing the query string in the url again, this time using `binding.pry`.
-
-###Client-side Console
-
-On a side note, note that anytime the application runs into an error, it loads up a `console` in the browser that interacts with byebug from the front-end via the gem `web-console`.
-
-![rails console](assets/rails-console.png)
-
->Additionally we can load up the console manually by invoking `<% console %>` somewhere in a view; generally, at the bottom of `application.html.erb`.
-
-###Challenge
-
-Render a variable `@great_quote` onto the view but do **not** set it explicitly in the controller. Instead use `binding.pry` to hit breakpoint, set `@great_quote` to something nice, `continue`, then see it rendered to the page.
 
 ## More Challenges
 
