@@ -1,6 +1,6 @@
 ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
 
-#Error-Handling & Validations
+# Error-Handling & Validations
 
 ### Why is this important?
 <!-- framing the "why" in big-picture/real world examples -->
@@ -105,7 +105,7 @@ Moreover, we can call [`.errors.full_messages`](http://guides.rubyonrails.org/ac
 
 Let's look at how we can display the error messages to the user so they know what went wrong if their input doesn't pass our validations.
 
-###Challenge: Duplicates (2 mins)
+### Challenge: Duplicates (2 mins)
 
 Get the `airplane.errors.full_messages` to return `["Name has already been taken"]`
 
@@ -113,7 +113,7 @@ Get the `airplane.errors.full_messages` to return `["Name has already been taken
 
 In the `airplane_app` what currently happens when we try to submit invalid data to the database via the `airplanes#new` view?
 
->As a user how are you supposed to know that something went wrong and what you are supposed to do about it?
+> As a user how are you supposed to know that something went wrong and what you are supposed to do about it?
 
 In order to properly communicate what is happening behind the scenes, we can display flash messages to show them specific errors.
 
@@ -165,7 +165,7 @@ Just one last step! We've sent `flash` to the view, but we haven't rendered it y
 <%= yield %>
 ```
 
->Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code.
+> Note: run [`rails notes`](http://guides.rubyonrails.org/command_line.html#notes) for further guidance on where to add the above lines of code.
 
 ## More Challenges
 
