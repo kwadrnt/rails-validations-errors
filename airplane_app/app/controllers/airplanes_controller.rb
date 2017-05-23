@@ -13,6 +13,7 @@ class AirplanesController < ApplicationController
       redirect_to @airplane
     else
       # TODO: store error messages in the flash hash
+      flash[:error] = @airplane.errors.full_messages.join(" ")
       render :new
     end
   end
